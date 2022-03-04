@@ -20,5 +20,25 @@ module.exports = {
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-var-requires': 'off',
+    'no-console': ['error', { allow: ['warn', 'error'] }],
+    'sort-imports': [
+      'error',
+      {
+        ignoreCase: false,
+        ignoreDeclarationSort: false,
+        ignoreMemberSort: false,
+        memberSyntaxSortOrder: ['none', 'single', 'all', 'multiple'],
+        allowSeparatedGroups: false,
+      },
+    ],
+    'array-element-newline': [
+      'error',
+      {
+        ArrayExpression: 'consistent',
+        ArrayPattern: { minItems: 3 },
+      },
+    ],
+    'array-bracket-newline': ['error', { minItems: 3 }],
   },
 };
