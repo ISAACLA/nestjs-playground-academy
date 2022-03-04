@@ -1,6 +1,6 @@
 import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { BaseEntity } from '../../base-entity';
-import { Institute } from '../../institutes/entities/institute.entity';
+import { BaseEntity } from '../base-entity';
+import { Institute } from './institute.entity';
 
 @Entity()
 export class Contact extends BaseEntity {

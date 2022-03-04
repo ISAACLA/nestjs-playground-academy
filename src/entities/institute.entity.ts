@@ -1,4 +1,4 @@
-import { Department } from 'src/departments/entities/department.entity';
+import { Department } from 'src/entities/department.entity';
 import {
   Column,
   Entity,
@@ -7,9 +7,9 @@ import {
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Contact } from '../../contacts/entities/contact.entity';
-import { Course } from '../../courses/entities/course.entity';
-import { BaseEntity } from '../../base-entity';
+import { Contact } from './contact.entity';
+import { Course } from './course.entity';
+import { BaseEntity } from '../base-entity';
 
 @Entity()
 export class Institute extends BaseEntity {

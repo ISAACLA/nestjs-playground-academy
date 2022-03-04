@@ -1,4 +1,4 @@
-import { Institute } from 'src/institutes/entities/institute.entity';
+import { Institute } from 'src/entities/institute.entity';
 import {
   Column,
   Entity,
@@ -7,9 +7,9 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Department } from '../../departments/entities/department.entity';
-import { BaseEntity } from '../../base-entity';
-import { Student } from 'src/students/entities/student.entity';
+import { Department } from './department.entity';
+import { BaseEntity } from '../base-entity';
+import { Student } from 'src/entities/student.entity';
 
 @Entity({ name: 'courses' })
 export class Course extends BaseEntity {

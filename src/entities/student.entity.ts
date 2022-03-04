@@ -1,6 +1,6 @@
-import { Course } from 'src/courses/entities/course.entity';
+import { Course } from 'src/entities/course.entity';
 import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { BaseEntity } from '../../base-entity';
+import { BaseEntity } from '../base-entity';
 
 @Entity({ name: 'student' })
 export class Student extends BaseEntity {
