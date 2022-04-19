@@ -1,5 +1,5 @@
 import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { BaseEntity } from '../base-entity';
+import { BaseEntity } from './base-entity';
 import { Institute } from './institute.entity';
 
 @Entity()

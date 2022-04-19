@@ -5,9 +5,9 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { BaseEntity } from './base-entity';
 import { Course } from './course.entity';
 import { Institute } from 'src/entities/institute.entity';
-import { BaseEntity } from '../base-entity';
 
 @Entity()
 export class Department extends BaseEntity {

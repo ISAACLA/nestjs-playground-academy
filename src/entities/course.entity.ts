@@ -8,7 +8,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Department } from './department.entity';
-import { BaseEntity } from '../base-entity';
+import { BaseEntity } from './base-entity';
 import { Student } from 'src/entities/student.entity';
 
 @Entity({ name: 'courses' })
