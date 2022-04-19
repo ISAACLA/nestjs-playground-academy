@@ -37,3 +37,7 @@ lerna-debug.log*
 # Environment
 /.env
 package-lock.json
+
+
+# Migrationos Back Up
+./src/database/migration-mannual-relationships
