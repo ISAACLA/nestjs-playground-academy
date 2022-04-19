@@ -1,26 +1,83 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
 import { CreateInstituteDto } from './dto/create-institute.dto';
 import { UpdateInstituteDto } from './dto/update-institute.dto';
+import { InjectRepository } from "@nestjs/typeorm";
+import { Institute } from "../entities/institute.entity";
+import { Repository } from "typeorm";
 
 @Injectable()
 export class InstitutesService {
-  create(createInstituteDto: CreateInstituteDto) {
-    return 'This action adds a new institute';
+  constructor(
+    @InjectRepository(Institute)
+    private instituteRepository: Repository<Institute>
+  ) {
   }
 
-  findAll() {
-    return `This action returns all institutes`;
+  async create(newInstituteDto: CreateInstituteDto) {
+    try {
+      return await this.instituteRepository.save(newInstituteDto);
+    } catch (e) {
+      throw new BadRequestException();
+    }
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} institute`;
+  async findAll() {
+    try {
+      return await this.instituteRepository.find({ withDeleted: true });
+    } catch (e) {
+      throw new BadRequestException();
+    }
   }
 
-  update(id: number, updateInstituteDto: UpdateInstituteDto) {
-    return `This action updates a #${id} institute`;
+  async findOne(id: string) {
+    try {
+      // return await this.instituteRepository.findOneOrFail(id);
+      // return await this.instituteRepository.findOne({ where: { id} });
+      // return await this.instituteRepository.findByIds([id], {});
+      return await this.instituteRepository.find({
+        where: { id },
+        withDeleted: true,
+      });
+    } catch (e) {
+      throw new NotFoundException();
+    }
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} institute`;
+  async update(id: string, updateInstituteDto: UpdateInstituteDto) {
+
+    const institute: Institute = await this.instituteRepository.findOneOrFail(id);
+
+    if (!institute) {
+      throw new NotFoundException();
+    }
+
+    const updatedInstitute = this.instituteRepository.merge(
+      institute,
+      updateInstituteDto,
+    );
+
+    try {
+      return await this.instituteRepository.save(updatedInstitute);
+    } catch (e) {
+      throw new BadRequestException();
+    }
+  }
+
+  async remove(id: string) {
+    const institute: Institute = await this.instituteRepository.findOneOrFail(
+      id,
+    );
+
+    if (!institute) {
+      throw new NotFoundException();
+    }
+
+    institute.deletedAt = new Date(Date.now());
+
+    try {
+      return await this.instituteRepository.save(institute);
+    } catch (e) {
+      throw new BadRequestException();
+    }
   }
 }

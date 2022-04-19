@@ -1,6 +1,6 @@
 import { Course } from 'src/entities/course.entity';
 import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { BaseEntity } from '../base-entity';
+import { BaseEntity } from './base-entity';
 
 @Entity({ name: 'student' })
 export class Student extends BaseEntity {
@@ -18,9 +18,6 @@ export class Student extends BaseEntity {
 
   @Column()
   bod: Date;
-
-  @Column()
-  deleted: boolean;
 
   @ManyToMany(() => Course, (course) => course.students)
   courses: Course[];
