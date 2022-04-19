@@ -40,4 +40,4 @@ package-lock.json
 
 
 # Migrationos Back Up
-./src/database/migration-mannual-relationships
+/src/database/migration-mannual-relationships/*
